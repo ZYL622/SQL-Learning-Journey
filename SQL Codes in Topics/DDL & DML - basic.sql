@@ -1,0 +1,187 @@
+/* 
+=============================================================
+This is the learning journey of 'DDL & DML Topic' 
+	DDL: Data Definition Language
+	DML: Data Manipulation Language
+=============================================================
+<< DDL >>
+
+>> CREATE: Create & define a new table
+	** Example:
+	=================== CODE ===================
+	CREATE TABLE table_name (
+		key_col INT NOT NULL,
+		col_name_1 VARCHAR(50) NOT NULL,
+		col_name_2 DATE,
+		col_name_3 VARCHAR(15) NOT NULL,
+		CONSTRAINT pk_key_name PRIMARY KEY (key_col)
+	);
+	=================== CODE ===================
+
+	** Note:
+		(1) [NOT NULL] is optional, but it can be used when the information is mandatory.
+
+
+>> ALTER: Modifies the definition of a table (e.g., add new column, change data type, drop columns).
+	** Example:
+
+	(1) Add a new column to table:
+		=================== CODE ===================
+		ALTER TABLE table_name
+		ADD col_name VARCHAR(50) NOT NULL;
+		=================== CODE ===================
+
+	(2) DROP a new column to table:
+		=================== CODE ===================
+		ALTER TABLE table_name
+		DROP COLUMN col_name;
+		=================== CODE ===================
+
+	(3) ALTER data type of a column
+		=================== CODE ===================
+		ALTER TABLE table_name
+		ALTER COLUMN column_name datatype;
+		=================== CODE ===================
+
+=============================================================
+<< DML >>
+
+>> Insert: 
+	(1) Add new rows MANUALLY to the table
+		=================== CODE ===================
+		INSERT INTO table_name (column1, column2, column3,…)
+		VALUES (value1, value2, value3,…),
+				(value1, value2, value3,…)
+		=================== CODE ===================
+		
+	(2) Insert data from Source Table into Target Table;
+		Use SELECT at first to get data, then use INSERT to inject data
+		=================== CODE ===================
+		INSERT INTO table_name (column1, column2, column3,…)
+		SELECT * FROM table_name
+		=================== CODE ===================
+
+>> Update: Change the contents of the already exsisting row
+	=================== CODE ===================
+	UPDATE table_name
+		SET column1 = value1,
+			column2 = value2
+		WHERE <condition>
+	=================== CODE ===================
+
+>> Delete: Remove the already existing rows
+	=================== CODE ===================
+	DELETE FROM table_name
+	WHERE <condition>
+	=================== CODE ===================
+	
+	
+>> Truncate: Reset everything & make the table empty
+	=================== CODE ===================
+	TRUNCATE TABLE table_name
+	=================== CODE ===================
+
+=============================================================
+*/
+
+
+USE MyDatabase;
+
+-- ======================================================
+-- DDL 
+-- ======================================================
+
+-- ==============  DROP  ==============
+-- Create a new table called persons with columns:
+	-- id, person_name, birth_date, and phone
+DROP TABLE IF EXISTS persons;
+CREATE TABLE persons (
+	id INT NOT NULL,
+    person_name VARCHAR(50) NOT NULL,
+    birth_date DATE,
+    phone VARCHAR(15) NOT NULL,
+	CONSTRAINT pk_persons PRIMARY KEY (id)
+);
+
+
+-- ==============  ALTER  ==============
+-- Add a new column called email to the 'persons' table
+ALTER TABLE persons
+ADD email VARCHAR(50) NOT NULL;
+
+
+-- ==============  ALTER  ==============
+-- Remove the column phone from the 'persons' table
+ALTER TABLE persons
+DROP COLUMN phone;
+
+
+-- ==============  DROP  ==============
+-- Delete the talbe 'persons' from the database
+DROP TABLE persons;
+
+
+
+-- ======================================================
+-- DML 
+-- ======================================================
+
+-- Add tow new rows: (6, 'Anna', 'USA', NULL), (7, 'Sam', NULL, 100) into table customers
+INSERT INTO customers (id, first_name, country, score)
+VALUES (6, 'Anna', 'USA', NULL), 
+	(7, 'Sam', NULL, 100);
+
+
+-- ==============  INSERT  ==============
+-- Copy data from 'customers' table into 'persons'
+INSERT INTO persons (id, person_name, birth_date, phone)
+SELECT
+	id, 
+	first_name,
+	NULL,
+	'Unknown'
+FROM customers;
+
+
+-- ==============  UPDATE  ==============
+-- Change the score of customer with ID 6 to 0 in Table 'customers'
+UPDATE customers
+SET score = NULL
+WHERE id = 6;
+
+
+-- ==============  UPDATE  ==============
+-- Change the score of customer with id 7 to 0 & update the country to 'UK'
+UPDATE customers 
+SET 
+    score = 0,
+    country = 'UK'
+WHERE
+    id = 7;
+
+
+-- ==============  UPDATE  ==============
+-- Update all customers with a NULL score by setting their score to 0
+UPDATE customers 
+SET 
+    score = 0
+WHERE
+    score IS NULL;
+
+
+-- ==============  DELETE  ==============
+-- Delete all customers with an ID greater than 5
+DELETE FROM customers
+WHERE id > 5;
+
+/* Check the 'Delete' commend
+	SELECT * 
+	FROM customers
+	WHERE id > 5;
+*/
+
+
+-- ==============  TRUNCATE  ==============
+-- Delete all data from table persons (but keep the table structure)
+TRUNCATE TABLE persons;
+
