@@ -1,10 +1,13 @@
 /* 
 =============================================================
-This is the learning journey of 'DDL & DML Topic' 
+This is the record of learning journey of 'DDL & DML Topic' 
 	DDL: Data Definition Language
 	DML: Data Manipulation Language
 =============================================================
-<< DDL >>
+
+======================================================
+=========================  DDL  ======================
+======================================================
 
 >> CREATE: Create & define a new table
 	** Example:
@@ -43,8 +46,9 @@ This is the learning journey of 'DDL & DML Topic'
 		ALTER COLUMN column_name datatype;
 		=================== CODE ===================
 
-=============================================================
-<< DML >>
+======================================================
+=========================  DML  ======================
+======================================================
 
 >> Insert: 
 	(1) Add new rows MANUALLY to the table
