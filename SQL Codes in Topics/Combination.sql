@@ -22,36 +22,36 @@ This is the documentation of learning journey of 'Combination'
 =======================  JOIN  =======================
 ======================================================
 
->> 	Inner Join: 
-        Return only matching data from both tables on <condition>
+>> Inner Join: 
+	Return only matching data from both tables on <condition>
 	===================== CODE =====================
         SELECT *
         FROM A/B
         INNER JOIN B/A
         ON A.key = B.key
-    ===================== CODE =====================
+	===================== CODE =====================
 
->> 	Left Join: 
+>> Left Join: 
         Return all rows from Left and only matching from Right (order-sensitive)
-		(non-matching rows will get NULL)
+	(non-matching rows will get NULL)
 	===================== CODE =====================
         SELECT *
         FROM A
         LEFT JOIN B
         ON A.key = B.key
-    ===================== CODE =====================
+	===================== CODE =====================
 
->> 	FULL JOIN: 
-		Return all rows from both tables << In SQL Server: >>
-		(non-matching rows will get NULL)
+>> FULL JOIN: 
+	Return all rows from both tables << In SQL Server: >>
+	(non-matching rows will get NULL)
 	===================== CODE =====================	
         SELECT *
         FROM A/B
         FULL JOIN B/A
         ON A.key = B.key
-    ===================== CODE =====================
+	===================== CODE =====================
 
->>	Left ANTI JOIN: 
+>> Left ANTI JOIN: 
         Return rows from LEFT that has NO Match in the RIGHT table
 	===================== CODE =====================
         SELECT *
@@ -59,9 +59,9 @@ This is the documentation of learning journey of 'Combination'
         LEFT JOIN B
         ON A.key = B.key
         WHERE B.key IS NULL -- since there is no match data from B
-    ===================== CODE =====================
+	===================== CODE =====================
 
->>	FULL ANTI JOIN: 
+>> FULL ANTI JOIN: 
         Return only rows that don't match in either tables
 	===================== CODE =====================
         SELECT *
@@ -69,16 +69,16 @@ This is the documentation of learning journey of 'Combination'
         FULL JOIN B
         ON A.key = B.key
         WHERE A.key IS NULL OR B.key IS NULL
-    ===================== CODE =====================
+	===================== CODE =====================
 
 
->> 	CROSS JOIN: 
+>> CROSS JOIN: 
         All possible combination among two tables
 	===================== CODE =====================	
         SELECT *
         FROM A
         CROSS JOIN B -- No condition is needed
-    ===================== CODE =====================
+    	===================== CODE =====================
 
 ======================================================
 =======================  SET  ========================
