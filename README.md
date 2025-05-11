@@ -152,15 +152,147 @@ ROUND(), ABS()
   Partition Clause  >> OVER(PARTITION BY col_name)
   Order Clause      >> OVER(ORDER BY col_name DESC/ASC)
   Frame Clause      >> Frame Types:     ROWS, RANGE
-                    >> Frame Boundary:  CURRENT ROW, N PRECEDING / FOLLOWING, UNBOUNDED PRECEDING / FOLLOWING
+                    >> Frame Boundary:  CURRENT ROW, N PRECEDING / FOLLOWING, UNBOUNDED PRECEDING / FOLLOWING  </pre>
+
+### (8) SubQuery
+
+- Location & Clauses
+  <pre>
+  (1) SELECT; (2) FROM; (3) JOIN; (4) WHERE  </pre>
+
+- Result Types
+  <pre>
+  (1) Scalar Subquery >> Only return single value
+  (2) Row Subquery    >> Return multiple rows (single column)
+  (3) Table Subquery  >> Return as table (multiple rows & multiple columns)  </pre>
+
+- Dependency between Main Query & SubQuery
+  <pre>
+  (1) Non-correlated Subquery; (2) Correlated Subquery  </pre>
+
+- Usage Summary
+  <pre>
+  (1) Create temporary result set
+  (2) Prepare data before Joining tables
+  (3) Dynamic & Complex Filtering
+  (4) Check the existance of rows from another table (EXISTS)
+  (5) Row by row comparison (Correlated subquery)	    </pre>
+
+
+### (9) Common Table Expression (CTE)
+
+- Standalone or Nested CTE (Non-Recursive)
+  <pre>
+    WITH CTE-Name1 AS
+    (
+        SELECT ...
+        FROM ...
+        WHERE ...
+    )
+    , CTE-Name2 AS
+    (
+        SELECT ...
+        FROM ... -- if use previous CTEs, then Nested; Otherwise, Standalone
+        WHERE ...
+    )
+    -- Main Query
+    SELECT ...
+    FROM CTE-NameX
+    WHERE ...  </pre>
+
+- Recursive CTE
+  <pre>
+    WITH CTE-Name AS
+    (
+        SELECT ...
+        FROM ...
+        WHERE ...
+
+        UNION / ....
+
+        SELECT ...
+        FROM CTE-Name
+        WHERE [Break Condition]
+    )
+    -- Main Query
+    SELECT ...
+    FROM CTE-Name
+    WHERE ...
+    OPTION (MAXRECURSION ...) -- Define the maximum number of recursions  </pre>
+
+### (10) Views
+
+- Virtual table based on the result set of a query, without storing data in database
+  
+- Create View
+	<pre>
+	CREATE VIEW SchemaName.ViewName AS
+	(
+	SELECT ...
+	FROM ...
+	WHERE ...
+	) </pre>
+
+- Drop View
+  <pre>
+  DROP VIEW SchemaName.ViewName </pre>
+
+- Update View
+	<pre>
+	IF OBJECT_ID ('SchemaName.ViewName', 'V') IS NOT NULL
+	    DROP VIEW SchemaName.ViewName;
+	GO
+	CREATE VIEW SchemaName.ViewName AS
+	(
+	    SELECT ...
+	    FROM ...
+	    WHERE ...
+	) </pre>
+
+### (11) CTAS and Temp Tables
+
+- Create CTAS
+	<pre>
+	SELECT ...
+	INTO TableName
+	FROM ...
+	WHERE ...</pre>
+
+- Drop CTAS
+	<pre>
+	DROP TABLE TableName</pre>
+
+- Refresh CTAS
+	<pre>
+	IF OBJECT_ID('TableName', 'U') IS NOT NULL
+	    DROP TABLE TableName
+	GO 
+	SELECT ...
+	INTO TableName
+	FROM ...
+	WHERE ...</pre>
+
+- Temporary Table (Create)
+	<pre>
+	SELECT ...
+	INTO #TableName
+	FROM ...
+	WHERE ...</pre>
+
+### (12) Stored Procedures & Triggers
+- Stored Procedure
+  <pre>
+  (1) Create PROCEDURE or Alter it if alreay existed; 
+  (2) Execution (Call) PROCEDURE;
+  (3) Drop PROCEDURE;
+  (4) Use Parameters;
+  (5) Use Variables inside PROCEDURE;
+  (6) Control Flow  (by IF & ELSE)
+  (7) Error Handling (TRY & CATCH)</pre>
+
+- Triggers
+  <pre>
+  (1) Create Triggers
   </pre>
-
-
-
-
-
-
-
-
-
+- 
 
