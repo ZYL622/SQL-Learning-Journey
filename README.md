@@ -294,5 +294,3 @@ ROUND(), ABS()
   <pre>
   (1) Create Triggers
   </pre>
-- 
-
