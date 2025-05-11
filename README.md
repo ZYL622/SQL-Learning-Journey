@@ -12,7 +12,6 @@ These are the record files of Yulin Zhou's learning journey in SQL.
 
 
 ### (1) Query
-[file](./SQL Codes in Topics/1 - Query.sql)
 <pre>
 SELECT, DISTINCT, TOP, FROM, JOIN, WHERE, GROUP BY, HAVING, ORDER BY (follow coding order)
 </pre>
